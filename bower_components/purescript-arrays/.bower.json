@@ -1,0 +1,43 @@
+{
+  "name": "purescript-arrays",
+  "homepage": "https://github.com/purescript/purescript-arrays",
+  "description": "Array utility functions",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript/purescript-arrays.git"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "bower.json",
+    "package.json"
+  ],
+  "dependencies": {
+    "purescript-foldable-traversable": "^3.0.0",
+    "purescript-nonempty": "^4.0.0",
+    "purescript-partial": "^1.2.0",
+    "purescript-st": "^3.0.0",
+    "purescript-tailrec": "^3.0.0",
+    "purescript-tuples": "^4.0.0",
+    "purescript-unfoldable": "^3.0.0",
+    "purescript-unsafe-coerce": "^3.0.0"
+  },
+  "devDependencies": {
+    "purescript-assert": "^3.0.0",
+    "purescript-console": "^3.0.0",
+    "purescript-const": "^3.0.0"
+  },
+  "version": "4.2.2",
+  "_release": "4.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.2.2",
+    "commit": "ef47e6074ce9aa3866366a75d66b739a52ddb08f"
+  },
+  "_source": "https://github.com/purescript/purescript-arrays.git",
+  "_target": "^4.1.2",
+  "_originalSource": "purescript-arrays"
+}
