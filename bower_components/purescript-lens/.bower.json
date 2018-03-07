@@ -1,0 +1,44 @@
+{
+  "name": "purescript-lens",
+  "description": "PureScript implementation of Lens.",
+  "license": "MIT",
+  "homepage": "https://github.com/joneshf/purescript-lens",
+  "keywords": [
+    "PureScript",
+    "lens"
+  ],
+  "authors": [
+    "Hardy Jones <jones3.hardy@gmail.com> (https://github.com/joneshf)",
+    "John A. De Goes <john@degoes.net> (http://degoes.net)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joneshf/purescript-lens.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "purescript-const": "^3.0.0",
+    "purescript-distributive": "^3.0.0",
+    "purescript-profunctor": "^3.0.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^3.0.0",
+    "purescript-console": "^3.0.0"
+  },
+  "version": "3.0.0",
+  "_release": "3.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.0.0",
+    "commit": "1d5193fb2cd9b01529ee841e9678970684aa40e5"
+  },
+  "_source": "https://github.com/joneshf/purescript-lens.git",
+  "_target": "^3.0.0",
+  "_originalSource": "purescript-lens"
+}

@@ -1,0 +1,33 @@
+{
+  "name": "purescript-folds",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-control": "^3.0.0",
+    "purescript-profunctor": "^3.0.0"
+  },
+  "devDependencies": {
+    "purescript-console": "^3.0.0",
+    "purescript-psci-support": "^3.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/paf31/purescript-folds.git"
+  },
+  "homepage": "https://github.com/paf31/purescript-folds",
+  "version": "3.1.0",
+  "_release": "3.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.1.0",
+    "commit": "394a77b15a09e26db9385567b7b8589af86ed0c6"
+  },
+  "_source": "https://github.com/paf31/purescript-folds.git",
+  "_target": "^3.1.0",
+  "_originalSource": "purescript-folds"
+}

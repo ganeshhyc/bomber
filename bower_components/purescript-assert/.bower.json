@@ -1,0 +1,32 @@
+{
+  "name": "purescript-assert",
+  "homepage": "https://github.com/purescript/purescript-assert",
+  "description": "Basic assertions library for low level testing",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript/purescript-assert.git"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "test",
+    "bower.json",
+    "package.json"
+  ],
+  "dependencies": {
+    "purescript-eff": "^3.0.0"
+  },
+  "version": "3.0.0",
+  "_release": "3.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.0.0",
+    "commit": "62bc3b0b103d781e42460e5f9b5246b981c63826"
+  },
+  "_source": "https://github.com/purescript/purescript-assert.git",
+  "_target": "^3.0.0",
+  "_originalSource": "purescript-assert"
+}

@@ -1,0 +1,13 @@
+language: node_js
+node_js: stable
+script:
+  - travis_wait npm test
+after_success:
+  - rm -v travis_wait_*.log
+  - |
+    test $TRAVIS_TAG &&
+    echo $GITHUB_TOKEN | pulp login &&
+    yes | pulp publish --no-push
+cache:
+  directories:
+    - node_modules
