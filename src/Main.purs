@@ -32,18 +32,21 @@ type State =
   { x :: Int
   , y :: Int
   , xBomb :: Int
+  , play :: Boolean
   , tar :: Boolean
   , l1 :: Int
   , l2 :: Int
   , l3 :: Int
   , l4 :: Int
   , l5 :: Int
+  , score :: Int
+  , str :: String
   }
 
 
 main :: forall eff. Eff ( console :: CONSOLE, frp :: FRP, dom :: DOM | eff ) Unit
 main = do
-    let initialState = { x : 0 , y : -50 , xBomb : 0 , tar : false , l1 : 50 , l2 : 150 , l3 : 100 , l4 : 6 , l5 : 200 }
+    let initialState = { x : 0 , y : -50 , xBomb : 0 , str : "Press space to Shoot \n Left \\ Right key to move \nScore" , score : 0 , play : true , tar : false , l1 : 50 , l2 : 150 , l3 : 100 , l4 : 6 , l5 : 200 }
     left <- mkDyn false
     right <- mkDyn false
     boom <- mkDyn false
@@ -54,12 +57,37 @@ main = do
       (animationFrame)
       *> pure unit
   where movement left right boom oldState =
-          loons left right boom
-            oldState{l1=((oldState.l1+2)%550)
-              ,l2=((oldState.l2+1)%550)
-              ,l3=((oldState.l3+3)%550)
-              ,l4=((oldState.l4+2)%550)
-              ,l5=((oldState.l5+2)%550)}
+            collision left right boom
+            (if oldState.play
+              then oldState {l1=((oldState.l1+2)%550)
+                               ,l2=((oldState.l2+1)%550)
+                               ,l3=((oldState.l3+1)%550)
+                               ,l4=((oldState.l4+2)%550)
+                               ,l5=((oldState.l5+2)%550)}
+
+            else if oldState.play /= true
+              then oldState { str = "GAME OVER, your score is :"}
+
+             else  oldState)
+
+
+
+gameOver left right boom oldState = loons left right boom
+          (if oldState.l1 > 545
+          || oldState.l2 > 545
+          || oldState.l3 > 545
+          || oldState.l4 > 545
+          || oldState.l5 > 545
+          then oldState{play = false}
+          else oldState)
+
+collision left right boom oldState = gameOver left right boom
+                          (if oldState.l1-300 >= oldState.y+300 && (oldState.xBomb+575 > 375 && oldState.xBomb+575 < 425) then oldState {l1 = 10 , y = -50 , tar = false , score = oldState.score + 5 , xBomb = oldState.x}
+                     else if oldState.l2-300 >= oldState.y+300 && (oldState.xBomb+575 > 480  && oldState.xBomb+575 < 530 )then oldState {l2 = 20 , y = -50 ,tar=false, score = oldState.score + 5 , xBomb = oldState.x}
+                     else if oldState.l3-300 >= oldState.y+300 && (oldState.xBomb+575 > 580 && oldState.xBomb+575 < 620)then oldState {l3 = 4 , y = -50 ,tar=false, score = oldState.score + 5 , xBomb = oldState.x}
+                     else if oldState.l5-300 >= oldState.y+300 && (oldState.xBomb+575 > 670 && oldState.xBomb+575 < 730)then oldState {l5 = 10 , y = -50 ,tar=false, score = oldState.score + 5 , xBomb = oldState.x}
+                     else if oldState.l4-300 >= oldState.y+300 && (oldState.xBomb+575 > 780 && oldState.xBomb+575 < 825)then oldState {l4 = 10 , y = -50 ,tar=false, score = oldState.score + 5 , xBomb = oldState.x}
+                     else oldState)
 
 loons left right boom oldState =
           fire left right boom
@@ -75,8 +103,8 @@ fire left right boom oldState =
           else oldState)
 incRoc left right boom oldState =
           crossPath left right boom
-          (if boom
-            then oldState {y = oldState.y-15}
+          (if boom && oldState.play
+            then oldState {y = oldState.y-20}
           else if left && oldState.xBomb > - 300
             then oldState {xBomb = oldState.xBomb - 10}
           else if right && oldState.xBomb < 300
@@ -97,7 +125,23 @@ view action state =
     , gravity "center"
     , name "rootNode"
     ]
-    [ relativeLayout
+    [
+    linearLayout
+    [ height $ V 200
+    , width $ V 400
+    , margin "10,-10,20,20"
+    ][
+      textView
+        [ id_ "startgame"
+        , text (state.str<>" "<>show state.score)
+        , textSize "25px"
+        , height (V 200)
+        , width Match_Parent
+        , color "white"
+        ]
+    ]
+
+    ,relativeLayout
       [ height $ V 600
       , width $ V 600
       , background "gray"
@@ -153,7 +197,7 @@ view action state =
           [ id_ "destroyer1"
           , height $ V 50
           , width $ V 50
-          , margin (show (state.xBomb+565)<> ","<>show (state.y+600)<>",100,20")
+          , margin (show (state.xBomb+575)<> ","<>show (state.y+600)<>",100,20")
           , imageUrl "boom"
 
           ]
@@ -162,7 +206,7 @@ view action state =
           [ id_ "destroyer"
           , height $ V 50
           , width $ V 20
-          , margin (show (state.x+600)<> ",570,100,20")
+          , margin (show (state.x+610)<> ",570,100,20")
           , imageUrl "bomb"
 
           ]]
